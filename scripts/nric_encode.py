@@ -14,10 +14,15 @@ def generate(identification):
         return identification+alpha_singaporean[remainder]
 
 def main():
-    f = open("../text_files/nric_num.txt", "w")
+    f = open("../text_files/nric_num_encode.txt", "w")
     for i in range(99999):
         identification = 'S'+'96'+'{0:05}'.format(i)
-        f.write(generate(identification)+"\n")
+        nric = generate(identification)
+        temp = ""
+        for char in nric:
+            temp += str(ord(char)) + "-"
+        temp = temp[:-1]
+        f.write(temp + "\n")
 
 if __name__ == "__main__":
     main()
