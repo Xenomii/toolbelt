@@ -2,20 +2,36 @@ import string
 
 
 def main():
-    print("Caesar Cipher\n=============")
-    shift = 3
-    guess = 0
+    print('Caesar Cipher\n=================')
 
-    # Encrpytion
-    message = input("Enter your message: ")
-    print("Encrypting message now...")
-    cipher = encrypt(message.lower(), shift)
+    while True:
+        # Ask for choice
+        choice = input('Do you want to encrypt or decrypt the message? (E/D): ')
 
-    # Decryption
-    print("Decrypting message now...")
-    while guess < 26:
-        decrypt(cipher, guess)
-        guess += 1
+        # Encryption
+        if choice.capitalize() == 'E':
+            message = input('Enter your message: ')
+            while True:
+                shift = input('Enter number of shifts: ')
+                if shift.isnumeric():
+                    print('Encrypting message now...')
+                    encrypt(message.lower(), int(shift))
+                    break
+                else:
+                    print('That is not a number!')
+            break
+        # Decryption
+        elif choice.capitalize() == 'D':
+            guess = 0
+            ciphertext = input('Enter your ciphertext: ')
+            print('Decrypting message now...')
+            while guess < 26:
+                decrypt(ciphertext, guess)
+                guess += 1
+            break
+        else:
+            print('That is not a valid string!')
+
 
 
 def encrypt(m: string, s: int):
